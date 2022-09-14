@@ -3,6 +3,7 @@ from django.db import models
 
 
 class Devices(models.Model):
+    created_at = models.DateField(auto_now_add=True)
     name = models.CharField(verbose_name="Nome do dispositivo", null=False, blank=False, max_length=255)
     owner = models.ForeignKey(CustomUser, verbose_name="Usuário/Dono", on_delete=models.PROTECT)
 
@@ -16,9 +17,11 @@ class Devices(models.Model):
 
 
 class Commands(models.Model):
+    created_at = models.DateField(auto_now_add=True)
     name = models.CharField(verbose_name="Nome do comando", null=False, blank=False, max_length=255)
     plataform = models.CharField(verbose_name="Plataforma de Execução", null=False, blank=False, max_length=255)
     script = models.TextField(verbose_name="Script de execução", null=False, blank=False, max_length=512)
+    owner = models.ForeignKey(CustomUser, verbose_name="Usuário/Dono", on_delete=models.PROTECT)
 
     class Meta:
         ordering = ["id"]
@@ -30,6 +33,7 @@ class Commands(models.Model):
 
 
 class Intents(models.Model):
+    created_at = models.DateField(auto_now_add=True)
     name = models.CharField(verbose_name="Nome da intenção", null=False, blank=False, max_length=255)
     command = models.ForeignKey(Commands, verbose_name="Comando", on_delete=models.PROTECT)
     device = models.ForeignKey(Devices, verbose_name="Dispositivos", on_delete=models.PROTECT)

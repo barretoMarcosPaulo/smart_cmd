@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block body %}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Novo Comando</h5>
+            <small class="text-muted float-end">Novo Comando</small>
+        </div>
+        <div class="card-body">
+            <form method="post"> {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-fullname">Nome do comando</label>
+                <input type="text" class="form-control"  name="name" placeholder="Dê um nome a este comando" />
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlSelect1" class="form-label">Plataforma</label>
+                <select class="form-select" name="plataform" aria-label="Default select example">
+                  <option selected>Esolha uma opção</option>
+                  <option value="linux">Linux/Bash</option>
+                  <option value="windows">Windows</option>
+                  <option value="mac">MAC OS</option>
+                </select>
+              </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-message">Script de execução</label>
+                <textarea
+                  name="script"
+                  class="form-control"
+                  placeholder="Script que será executado"
+                ></textarea>
+              </div>
+            
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block body %}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Nova Intenção</h5>
+            <small class="text-muted float-end">Nova Intenção</small>
+        </div>
+        <div class="card-body">
+            <form method="post"> {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-fullname">Nome da intenção</label>
+                <input type="text" class="form-control" name="name" placeholder="Dê um nome a esta intenção" />
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlSelect1" class="form-label">Dispositivo</label>
+                <select class="form-select" name="device" aria-label="Default select example">
+                  <option selected>Esolha uma opção</option>
+                  {% for device in devices %}
+                  <option value="{{device.id}}">{{device.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlSelect1" class="form-label">Comando</label>
+                <select class="form-select" name="command" aria-label="Default select example">
+                  <option selected>Escolha uma opção</option>
+                  {% for command in commands %}
+                  <option value="{{command.id}}">{{command.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock %}

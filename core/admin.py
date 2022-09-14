@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Commands, Devices, Intents
+
+admin.site.register(Devices)
+admin.site.register(Intents)
+admin.site.register(Commands)
